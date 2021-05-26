@@ -32,6 +32,16 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int deletePerson(UUID id) {
+        Optional<Person> personMaybe = selectPersonById(id);
+        if(personMaybe.isEmpty()){
+            return 0;
+        }
+        DB.remove(personMaybe.get());
+        return 0;
+    }
+
+    @Override
+    public int updatePerson(UUID id, Person person) {
         return 0;
     }
 }
